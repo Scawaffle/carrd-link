@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# SvelteKit generated files
+.svelte-kit/
+
+# Build output
+build/
+dist/
+
+# Environment variables
+.env
+.env.*
+!.env.example
