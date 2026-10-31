@@ -1,42 +1,60 @@
-# sv
+Card
+A personal link hub with a minimal, card-inspired interface.
+Built from scratch with SvelteKit, featuring custom animations, interactive elements, and a collection of my social media links.
+Designed to be simple, lightweight, and a little more personal than your average link-in-bio page.
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+  Live Website ↗
 
-## Creating a project
+✦ Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+Minimal Interface — A clean, card-inspired layout with a focus on simplicity.
+Custom Animations — Smooth transitions and interactive animations throughout the interface.
+Responsive Design — Designed to work across different screen sizes and devices.
+Social Links — A centralized place to find my social media profiles and other online presence.
+Built from Scratch — Custom implementation rather than relying on a premade website builder.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+✦ Tech Stack
 
-To recreate this project with the same configuration:
+SvelteKit
+Svelte
+JavaScript
+CSS
+Vercel — Deployment
 
-```sh
-# recreate this project
-npx sv@0.17.0 create --template minimal --no-types --install npm scawaffle-site
-```
+✦ Getting Started
+To run the project locally, you'll need Node.js and npm installed.
+Installation
+Clone the repository:
+git clone YOUR_REPOSITORY_URL
+cd YOUR_PROJECT_DIRECTORY
 
-## Developing
+Install dependencies:
+npm install
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+Development
+Start the local development server:
 npm run dev
 
-# or start the server and open the app in a new browser tab
+To automatically open the project in your browser:
 npm run dev -- --open
-```
 
-## Building
-
-To create a production version of your app:
-
-```sh
+Production Build
+Build the project:
 npm run build
-```
 
-You can preview the production build with `npm run preview`.
+Preview the production build locally:
+npm run preview
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+✦ Deployment
+This project is intended to be deployed using Vercel.
+To deploy:
+
+Import the repository into your Vercel account.
+Let Vercel detect the SvelteKit framework.
+Configure environment variables if required.
+Deploy.
+
+Vercel will automatically build and deploy subsequent changes pushed to the connected Git repository.
+✦ License
+This project is licensed under the MIT License.
+See the LICENSE file for details.
