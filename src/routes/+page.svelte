@@ -191,10 +191,10 @@
 						href="https://drive.google.com/drive/folders/1gvtuoFbeRPV15ila8u4H2fows-bh71W_?usp=drive_link"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="not-available"
+						class="wide"
 					>
 						<Archive size={15} strokeWidth={1.8} aria-hidden="true" />
-						<span>PAWAI 2026 Archive - uploading...</span>
+						<span>PAWAI 2026 Pic Archive</span>
 					</a>
 
 					<button class="coming-soon" type="button" disabled>
@@ -284,7 +284,7 @@
 
 	.card-shell.open {
 		width: min(90vw, 40rem);
-		height: min(90vh, 40rem);
+		height: min(90vh, 42rem);
 		border-width: 0.25rem;
 		border-color: #ebce8f;
 		border-radius: 1.3rem;
@@ -566,6 +566,11 @@
 		opacity: 0.48;
 	}
 
+	.wide {
+		grid-column: 1 / -1;	
+		opacity: 1;
+	}
+
 	.coming-soon {
 		display: inline-flex;
 		align-items: center;
@@ -590,7 +595,7 @@
 	@media (max-width: 40rem) {
 		.card-shell.open {
 			width: min(90vw, 24rem);
-			height: min(92svh, 42rem);
+			height: min(92vh, 41.5rem);
 			overflow-x: hidden;
 			overflow-y: auto;
 			scrollbar-width: none;
