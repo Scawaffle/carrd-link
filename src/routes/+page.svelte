@@ -13,6 +13,8 @@
 	} from '@lucide/svelte';
 	import { siSpotify, siSoundcloud } from 'simple-icons';
 
+	import { track } from '@vercel/analytics';
+
 	let isOpen = $state(false);
 	let dotsPaused = $state(false);
 	let dotResumeTimer;
@@ -148,6 +150,7 @@
 						href="https://bsky.app/profile/scawaffle.me"
 						target="_blank"
 						rel="noopener noreferrer"
+						onclick={() => track('link_click', { link: 'bluesky' })}
 					>
 						<Cloud size={17} strokeWidth={1.8} aria-hidden="true" />
 						<span>Bluesky <small>(hacked atm)</small> </span>
@@ -155,8 +158,9 @@
 
 					<a
 						href="https://github.com/Scawaffle"
-						// target="_blank"
+						target="_blank"
 						rel="noopener noreferrer"
+						onclick={() => track('link_click', { link: 'github' })}
 					>
 						<Code2 size={17} strokeWidth={1.8} aria-hidden="true" />
 						<span>GitHub</span>
@@ -166,6 +170,7 @@
 						href="https://www.instagram.com/scawaffle/"
 						target="_blank"
 						rel="noopener noreferrer"
+						onclick={() => track('link_click', { link: 'instagram' })}
 					>
 						<Focus size={17} strokeWidth={1.8} aria-hidden="true" />
 						<span>Instagram</span>
@@ -175,6 +180,7 @@
 						href="https://t.me/Scawaffle"
 						target="_blank"
 						rel="noopener noreferrer"
+						onclick={() => track('link_click', { link: 'telegram' })}
 					>
 						<Send size={17} strokeWidth={1.8} aria-hidden="true" />
 						<span>Telegram</span>
@@ -184,6 +190,7 @@
 						href="https://t.me/+kiPHtyrQiLMyODA9"
 						target="_blank"
 						rel="noopener noreferrer"
+						onclick={() => track('link_click', { link: 'art_channel' })}
 					>
 						<Brush size={17} strokeWidth={1.8} aria-hidden="true" />
 						<span>Art Channel</span>
@@ -193,6 +200,7 @@
 						href="https://soundcloud.com/scawafflez"
 						target="_blank"
 						rel="noopener noreferrer"
+						onclick={() => track('link_click', { link: 'soundcloud' })}
 					>
 						<svg
 							width="18"
@@ -211,6 +219,7 @@
 						target="_blank"
 						rel="noopener noreferrer"
 						class="crossed-button"
+						onclick={() => track('link_click', { link: 'twitter' })}
 					>
 						<Bird size={17} strokeWidth={1.8} aria-hidden="true" />
 						<span><span class="crossed">Twitter / X</span> - 🚮</span>
@@ -220,6 +229,7 @@
 						href="https://open.spotify.com/user/w79bjjmaq7jcg6upilhcqmubn"
 						target="_blank"
 						rel="noopener noreferrer"
+						onclick={() => track('link_click', { link: 'spotify' })}
 					>
 						<svg
 							width="17"
@@ -238,6 +248,7 @@
 						target="_blank"
 						rel="noopener noreferrer"
 						class="wide"
+						onclick={() => track('link_click', { link: 'pawai_archive' })}
 					>
 						<Archive size={15} strokeWidth={1.8} aria-hidden="true" />
 						<span>PAWAI 2026 Pic Archive</span>
