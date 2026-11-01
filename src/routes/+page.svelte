@@ -11,12 +11,28 @@
 		Bird,
 		Archive
 	} from '@lucide/svelte';
+	import { siSpotify, siSoundcloud } from 'simple-icons';
 
 	let isOpen = $state(false);
 	let dotsPaused = $state(false);
 	let dotResumeTimer;
+	let reopenTimer;
 	const AUTO_OPEN_DELAY = 1_000;
+	const REOPEN_DELAY = 2_500;
 	const DOT_RESUME_DELAY = 10;
+
+	function toggleCard() {
+		window.clearTimeout(reopenTimer);
+		isOpen = !isOpen;
+	}
+
+	function closeCard() {
+		isOpen = false;
+		window.clearTimeout(reopenTimer);
+		reopenTimer = window.setTimeout(() => {
+			isOpen = true;
+		}, REOPEN_DELAY);
+	}
 
 	function pauseDotsForCardTransition(event) {
 		if (event.target !== event.currentTarget || !['width', 'height'].includes(event.propertyName)) return;
@@ -64,6 +80,7 @@
 
 		return () => {
 			window.clearTimeout(openTimer);
+			window.clearTimeout(reopenTimer);
 			window.clearTimeout(dotResumeTimer);
 			window.removeEventListener('load', startAutoOpenTimer);
 			mobileQuery.removeEventListener('change', keepDotsMovingOnDesktop);
@@ -95,23 +112,27 @@
 			aria-label={isOpen ? "Scawaffle's fursona" : 'Open profile card'}
 			aria-expanded={isOpen}
 			aria-controls="card-content"
-			onclick={() => (isOpen = !isOpen)}
+			onclick={toggleCard}
 		>
 			<img class="avatar-image" src="/images/scawaffle.png" alt="Scawaffle's fursona" />
 		</button>
 
 		<aside class="avatar-status" aria-label="Currently">
 			<p class="status-label">Currently</p>
-			<p class="status-description">Post processing &amp; sorting shots from PAWAI.</p>
-			<p class="status-description">One pic at a time with coffee &amp; waffles aside🧇 </p>
+			<p class="status-description">Post processing &amp; sorting shots from PAWAI. <br />🦊💻</p>
+			<p class="status-description">One pic at a time with coffee &amp; waffles aside<br />🧇☕</p>
+			<hr class="status-divider" />
+			<p class="status-description">Do people even read this tho? 🤔</p>
 		</aside>
 
-		<div id="card-content" class="card-content" aria-hidden={!isOpen} inert={!isOpen}>
-			<button class="close-button" type="button" onclick={() => (isOpen = false)}>
+		{#if isOpen}
+			<button class="close-button" type="button" onclick={closeCard}>
 				<span aria-hidden="true">&times;</span>
 				<span class="visually-hidden">Close profile card</span>
 			</button>
+		{/if}
 
+		<div id="card-content" class="card-content" aria-hidden={!isOpen} inert={!isOpen}>
 			<div class="card-main">
 				<div class="introduction">
 					<p class="eyebrow">Hello, I'm</p>
@@ -173,7 +194,15 @@
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<Headphones size={17} strokeWidth={1.8} aria-hidden="true" />
+						<svg
+							width="18"
+							height="18"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							aria-hidden="true"
+						>
+							<path d={siSoundcloud.path} />
+						</svg>
 						<span>SoundCloud</span>
 					</a>
 
@@ -181,10 +210,27 @@
 						href="https://twitter.com/scawaffle"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="not-available"
+						class="crossed-button"
 					>
-						<Bird s ize={15} strokeWidth={1.8} aria-hidden="true" />
-						<span>Twitter / X - deleted..?</span>
+						<Bird size={17} strokeWidth={1.8} aria-hidden="true" />
+						<span><span class="crossed">Twitter / X</span> - 🚮</span>
+					</a>
+
+					<a
+						href="https://open.spotify.com/user/w79bjjmaq7jcg6upilhcqmubn"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<svg
+							width="17"
+							height="17"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							aria-hidden="true"
+						>
+							<path d={siSpotify.path} />
+						</svg>
+						<span>Spotify</span>
 					</a>
 
 					<a
@@ -362,6 +408,13 @@
 		margin-top: 0.5rem;
 	}
 
+	.status-divider {
+		width: 5rem;
+		margin: 0.9rem auto;
+		border: 0;
+		border-top: 1px solid #ebce8f;
+	}
+
 	.status-label {
 		margin-bottom: 0.35rem !important;
 		color: #735b2d;
@@ -387,6 +440,9 @@
 		flex-direction: column;
 		justify-content: flex-start;
 		padding: 4rem 3rem 4rem 11.5rem;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		-webkit-overflow-scrolling: touch;
 		opacity: 0;
 		transform: translateY(1rem);
 		pointer-events: none;
@@ -470,6 +526,7 @@
 
 	.close-button {
 		position: absolute;
+		z-index: 3;
 		top: 0.8rem;
 		right: 0.9rem;
 		width: 2.5rem;
@@ -523,7 +580,7 @@
 	}
 
 	.links a small {
-		font-size: 0.7em;
+		font-size: 0.6em;
 		font-weight: 400;
 		white-space: normal;
 	}
@@ -560,9 +617,12 @@
 		opacity: 0.75;
 	}
 	
-	.not-available {
-		grid-column: 1 / -1;
-		border-style: dashed !important;	
+	.crossed{
+		text-decoration: line-through;
+	}
+
+	.crossed-button{
+		border-style: dashed !important;
 		opacity: 0.48;
 	}
 
@@ -618,6 +678,7 @@
 			min-height: 100%;
 			justify-content: flex-start;
 			padding: 10.5rem 1.25rem 1.5rem;
+			overflow-y: visible;
 			text-align: center;
 		}
 		.card-main {

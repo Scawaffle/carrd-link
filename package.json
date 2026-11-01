@@ -3,10 +3,10 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
-
+	
 	"engines": {
-    	"node": "24.x"
-  	},
+		"node": "24.x"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -21,6 +21,7 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"@lucide/svelte": "^1.49.0"
+		"@lucide/svelte": "^1.49.0",
+		"simple-icons": "^16.36.0"
 	}
 }
